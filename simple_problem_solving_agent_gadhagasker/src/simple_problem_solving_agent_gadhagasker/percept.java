@@ -11,4 +11,7 @@ package simple_problem_solving_agent_gadhagasker;
  */
 public class percept {
     String percept_string;
+    public percept(String s ){
+        percept_string = s;
+    }
 }

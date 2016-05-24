@@ -14,4 +14,7 @@ public class problem {
      public problem(String s){
          problem_var = s;
      }
+     public problem(){
+        
+     }
 }
