@@ -24,7 +24,7 @@ public class Simple_problem_solving_agent_gadhagasker {
         System.out.println("baby gadhagasker: ababababab ( enter your ques )");
         percept p = new percept(sc.nextLine());
         action returned_action =  simple_problem_solving_agent(p);
-        System.out.println("baby gadhagasker says:" + returned_action);
+        System.out.println("baby gadhagasker says: " + returned_action.action_var);
     }
     public static action simple_problem_solving_agent(percept p){
          action tobe_returned_action;
@@ -63,17 +63,17 @@ public class Simple_problem_solving_agent_gadhagasker {
     public static problem formulate_problem(state s, goal g){
         problem y = new problem();
         if(s.state_var.contains("gadhagasker") && g.goal_var.equals("reply")){
-            y.problem_var = "replythesamethingthathasbeenasked";
+            String[] tempo = s.state_var.split(",");
+            
+            y.problem_var = "replythis,"+tempo[tempo.length-1];
         }
         return y;
     }
     public static List<action> search(problem p){
-        
         List<action> tobereturned = new ArrayList<action>();
-        
-        action temp = new action();
+        String[] actions_string = p.problem_var.split(",");
+        action temp = new action(actions_string[actions_string.length-1]);
         tobereturned.add(temp);
-        
         return tobereturned;
     }
 }
