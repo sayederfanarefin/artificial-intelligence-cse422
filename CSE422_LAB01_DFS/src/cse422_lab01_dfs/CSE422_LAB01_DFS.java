@@ -122,7 +122,7 @@ public class CSE422_LAB01_DFS {
         System.out.println("Debug: entering traverser "+ node);
         ArrayList<String> tobereturned = new ArrayList<String>();
       
-        int node_idx = findIndex(adj,start);
+        int node_idx = findIndex(adj,node);
         for(int f = 1; f<adj[0].length;f++){
              
             if(adj[node_idx][f].equals("1")){
@@ -131,23 +131,29 @@ public class CSE422_LAB01_DFS {
                  
                 adj[node_idx][f] = adj[node_idx][f]+"visited";
                 if(adj[f][0].equals(end)){
+                    System.out.println("*******Debug: found end from: "+ node);
                     tobereturned.add(adj[f][0]);
-                     
+                    System.out.println("*******Debug: size of list: "+ tobereturned.size()+" added: "+adj[f][0]);
                 }else{
+                    System.out.println("Debug: end not found, start traverser: "+ adj[f][0]);
                     tobereturned = traverser(adj[f][0]); 
                 }
                 if(tobereturned.size()>0){
                     tobereturned.add(node);
-                    
+                    System.out.println("*******Debug: size of list: "+ tobereturned.size()+ " last added: "+node);
                 }
             }
             //add this to results
             results.add(tobereturned);
-           
+           //System.out.println("looper: "+f);
         }
         
         return tobereturned;
     }
+    /*
+    public static String[] childFinder(String node){
+        
+    }*/
     public static void adjMatrixPrinter(String grph[][]){
         System.out.println("Printing the adj matrix");
         for(int i=0; i <grph[0].length; i++){
