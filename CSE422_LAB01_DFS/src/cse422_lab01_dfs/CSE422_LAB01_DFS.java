@@ -31,63 +31,63 @@ public class CSE422_LAB01_DFS {
         // TODO code application logic here
         BufferedReader br = null;	      
             try {
-                    String sCurrentLine;
+                String sCurrentLine;
 
-                    br = new BufferedReader(new FileReader("input.txt"));
-                    String [] number_of_vr_edg= br.readLine().split(",");
-                    numberOfNodes = Integer.valueOf(number_of_vr_edg[0]);
-                    adj = new String [numberOfNodes+1][numberOfNodes+1];
-                    start = br.readLine();
-                    end = br.readLine();
-                    numberOfBrokenLines = Integer.valueOf(br.readLine());
-                    while ((sCurrentLine = br.readLine()) != null) {
-                        String temp_edge_nodes[] = sCurrentLine.split(",");
-                        
-                        
-                        String first = temp_edge_nodes[0];
-                        String second = temp_edge_nodes[1];
+                br = new BufferedReader(new FileReader("input.txt"));
+                String [] number_of_vr_edg= br.readLine().split(",");
+                numberOfNodes = Integer.valueOf(number_of_vr_edg[0]);
+                adj = new String [numberOfNodes+1][numberOfNodes+1];
+                start = br.readLine();
+                end = br.readLine();
+                numberOfBrokenLines = Integer.valueOf(br.readLine());
+                while ((sCurrentLine = br.readLine()) != null) {
+                    String temp_edge_nodes[] = sCurrentLine.split(",");
 
-                        boolean temp =false ;
-                        for(int j=1; j <=numberOfNodes; j++){
-                            if(adj[0][j] != null && adj[0][j].equals(first) ){
-                                temp = true;
-                            }
+
+                    String first = temp_edge_nodes[0];
+                    String second = temp_edge_nodes[1];
+
+                    boolean temp =false ;
+                    for(int j=1; j <=numberOfNodes; j++){
+                        if(adj[0][j] != null && adj[0][j].equals(first) ){
+                            temp = true;
                         }
-                        if(temp == false){
-                            for(int j=1; j <=numberOfNodes; j++){
-                                if(adj[0][j] == null ){
-                                        adj[0][j] = first;
-                                        adj[j][0] = first;
-                                        break;
-                                }
-                            }
-                        }
-                        temp = false;
-                        for(int j=1; j <=numberOfNodes; j++){
-                            if(adj[0][j] != null && adj[0][j].equals(second) ){
-                                temp = true;
-                            }
-                        }
-                        if(temp == false){
-                            for(int j=1; j <=numberOfNodes; j++){
-                                if(adj[0][j] == null ){
-                                        adj[0][j] = second;
-                                        adj[j][0] = second;
-                                        break;
-                                }
-                            }
-                        }
-                       for(int a=1; a<=numberOfNodes; a++){
-                            if(adj[0][a] != null && adj[0][a].equals(first)){
-                                 for(int b=1; b<=numberOfNodes; b++){
-                                  if(adj[0][b] != null && adj[0][b].equals(second)){
-                                       adj[a][b] = "1";
-                                       adj[b][a] =  "1";
-                                   }
-                                }
-                            }
-                        } 
                     }
+                    if(temp == false){
+                        for(int j=1; j <=numberOfNodes; j++){
+                            if(adj[0][j] == null ){
+                                    adj[0][j] = first;
+                                    adj[j][0] = first;
+                                    break;
+                            }
+                        }
+                    }
+                    temp = false;
+                    for(int j=1; j <=numberOfNodes; j++){
+                        if(adj[0][j] != null && adj[0][j].equals(second) ){
+                            temp = true;
+                        }
+                    }
+                    if(temp == false){
+                        for(int j=1; j <=numberOfNodes; j++){
+                            if(adj[0][j] == null ){
+                                    adj[0][j] = second;
+                                    adj[j][0] = second;
+                                    break;
+                            }
+                        }
+                    }
+                   for(int a=1; a<=numberOfNodes; a++){
+                        if(adj[0][a] != null && adj[0][a].equals(first)){
+                             for(int b=1; b<=numberOfNodes; b++){
+                              if(adj[0][b] != null && adj[0][b].equals(second)){
+                                   adj[a][b] = "1";
+                                   adj[b][a] =  "1";
+                               }
+                            }
+                        }
+                    } 
+                }
             } catch (IOException e) {
                 System.out.println("no file");
             } finally {
@@ -96,65 +96,51 @@ public class CSE422_LAB01_DFS {
                 } catch (IOException ex) {
                         ex.printStackTrace();
                 }
+                
                 for(int k=1;k<adj[0].length;k++){
                     for(int l=1;l<adj[0].length;l++){
                         if(adj[k][l] == null){
-                            adj[k][l] = "0";
+                            adj[k][l] = ".";
                         }
                     }
                 }
             }
         
-        adjMatrixPrinter(adj);
         ArrayList<String> x= traverser(start);
        for(int i =0; i < x.size();i++){
            System.out.print(x.get(i));
            System.out.print(" - ");
        }
        System.out.println("");
+       
+       System.out.println("routes:");
+       
+       for(int rhcp=0;rhcp<results.size();rhcp++){
+           for(int nirvana =0; nirvana<results.get(rhcp).size();nirvana++){
+               System.out.print(results.get(rhcp).get(nirvana));
+               System.out.print(" - ");
+           }
+           System.out.println();
+       }
     }
-    /*
-    public static String[] bachha_finder(String bap){
-        
-    }*/
-
     public static ArrayList<String> traverser(String node){
-        System.out.println("Debug: entering traverser "+ node);
         ArrayList<String> tobereturned = new ArrayList<String>();
-      
-        int node_idx = findIndex(adj,node);
-        for(int f = 1; f<adj[0].length;f++){
-             
-            if(adj[node_idx][f].equals("1")){
-                
-                System.out.println("Debug: found child");
-                
-                adj[node_idx][f] = "X";
-                adjMatrixPrinter(adj);
-                if(adj[f][0].equals(end)){
-                    System.out.println("*******Debug: found end from: "+ node);
-                    tobereturned.add(adj[f][0]);
-                    System.out.println("*******Debug: size of list: "+ tobereturned.size()+" added: "+adj[f][0]);
-                }else{
-                    System.out.println("Debug: end not found, start traverser: "+ adj[f][0]);
-                    //tobereturned 
-                    ArrayList<String> temp  = traverser(adj[f][0]);
-                    for(int metallica=0; metallica < temp.size();metallica++){
-                        tobereturned.add(temp.get(metallica));
-                    }
-                    System.out.println("*--Debug: after traversing "+ adj[f][0]+ " size of list: "+ tobereturned.size());
-                }
-                if(tobereturned.size()>0){
-                    tobereturned.add(node);
-                    System.out.println("*******Debug: size of list: "+ tobereturned.size()+ " last added: "+node);
-                }
-            }
-            //add this to results
-            //results.add(tobereturned);
-           //System.out.println("looper: "+f);
-        }
+        findIndex(node);
+        
         
         return tobereturned;
+    }
+    
+    public static ArrayList<String> childFinder(String node){
+        int node_idx = findIndex(node);
+        ArrayList<String> tobe_returned = new ArrayList<String>();
+        
+        for(int f = 1; f<adj[0].length;f++){
+           if(adj[node_idx][f].equals("1") && !adj[f][0].contains(start)){
+                tobe_returned.add(adj[f][0]);
+            }
+        }
+        return tobe_returned;
     }
     public static void adjMatrixPrinter(String grph[][]){
         System.out.println("Printing the adj matrix");
@@ -171,10 +157,10 @@ public class CSE422_LAB01_DFS {
         }
     }
     
-    public static int findIndex(String G[][],String s){
+    public static int findIndex(String s){
         int temp = -1;
-        for(int j=1; j <G[0].length; j++){
-                if(G[0][j].equals(s)){
+        for(int j=1; j <adj[0].length; j++){
+                if(adj[0][j].equals(s)){
                     temp = j;
                 }
             }

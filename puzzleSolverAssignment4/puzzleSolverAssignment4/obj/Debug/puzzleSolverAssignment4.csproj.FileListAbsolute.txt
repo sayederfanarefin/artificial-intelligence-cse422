@@ -1,0 +1,6 @@
+c:\users\erfan\documents\visual studio 2015\Projects\puzzleSolverAssignment4\puzzleSolverAssignment4\bin\Debug\puzzleSolverAssignment4.exe.config
+c:\users\erfan\documents\visual studio 2015\Projects\puzzleSolverAssignment4\puzzleSolverAssignment4\obj\Debug\puzzleSolverAssignment4.csprojResolveAssemblyReference.cache
+c:\users\erfan\documents\visual studio 2015\Projects\puzzleSolverAssignment4\puzzleSolverAssignment4\bin\Debug\puzzleSolverAssignment4.exe
+c:\users\erfan\documents\visual studio 2015\Projects\puzzleSolverAssignment4\puzzleSolverAssignment4\bin\Debug\puzzleSolverAssignment4.pdb
+c:\users\erfan\documents\visual studio 2015\Projects\puzzleSolverAssignment4\puzzleSolverAssignment4\obj\Debug\puzzleSolverAssignment4.exe
+c:\users\erfan\documents\visual studio 2015\Projects\puzzleSolverAssignment4\puzzleSolverAssignment4\obj\Debug\puzzleSolverAssignment4.pdb
