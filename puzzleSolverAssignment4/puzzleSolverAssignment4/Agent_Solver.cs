@@ -21,39 +21,51 @@ namespace puzzleSolverAssignment4
             Console.WriteLine(solver(matrix));
         }
 
-        private Boolean solver(int[][] mat)
+        private Boolean solver(int[][] pgy)
         {
             bool tobereturned = false;
 
-            if (isEqual(mat, end_state))
+
+
+
+            int[][] pio = new int[pgy.Length][];
+
+            for (int iii = 0; iii < pgy.Length; iii++)
+            {
+                pio[iii] = new int[pgy.Length];
+                for (int jjj = 0; jjj < pgy.Length; jjj++)
+                {
+                    pio[iii][jjj] = pgy[iii][jjj];
+                }
+            }
+
+
+
+            matrix_printer(pio);
+            if (isEqualx(pio, end_state))
             {
                 tobereturned = true;
             }
             else
             {
-                /*
-                if (isEqual(move_right(mat), mat))
+                
+                if (!isEqualx(move_right(pio), pio))
                 {
-
+                    Console.WriteLine("right");
+                    tobereturned = solver(move_right(pio));
                 }
-                else
+                
+               
+                if (!isEqualx(move_left(pio), pio))
                 {
-                    tobereturned = solver(move_right(mat));
+                    
+                    tobereturned = solver(move_left(pio));
                 }
-                */
-                if (isEqual(move_left(mat), mat))
-                {
-
-                }
-                else
-                {
-                    tobereturned = solver(move_left(mat));
-                }
-
+                  
             }
             return tobereturned;
         }
-        private Boolean isEqual(int[][] a, int[][] b)
+        private Boolean isEqualx(int[][] a, int[][] b)
         {
             Boolean t = true;
             for (int i = 0; i < a[0].Length; i++)
@@ -71,7 +83,7 @@ namespace puzzleSolverAssignment4
         }
         private int[][] move_up(int[][] matq)
         {
-            int[] tempxx = get0Point(matrix);
+            int[] tempxx = get0Point(matq);
             int i = tempxx[0];
             int j = tempxx[1];
 
@@ -87,7 +99,7 @@ namespace puzzleSolverAssignment4
 
         private int[][] move_down(int[][] mato)
         {
-            int[] tempxx = get0Point(matrix);
+            int[] tempxx = get0Point(mato);
             int i = tempxx[0];
             int j = tempxx[1];
 
@@ -104,34 +116,54 @@ namespace puzzleSolverAssignment4
 
         private int[][] move_left(int[][] matz)
         {
-            int[] tempxx = get0Point(matrix);
+            int[][] po = new int[matz.Length][];
+
+            for (int iii = 0; iii < matz.Length; iii++)
+            {
+                po[iii] = new int[matz.Length];
+                for (int jjj = 0; jjj < matz.Length; jjj++)
+                {
+                    po[iii][jjj] = matz[iii][jjj];
+                }
+            }
+            int[] tempxx = get0Point(po);
             int i = tempxx[0];
             int j = tempxx[1];
 
             if (j != 0)
             {
-                int temp = matz[i][j];
-                matz[i][j] = matz[i][j - 1];
-                matz[i][j - 1] = temp;
+                int temp = po[i][j];
+                po[i][j] = po[i][j - 1];
+                po[i][j - 1] = temp;
 
 
             }
-            return matz;
+           return po;
         }
-        private int[][] move_right(int[][] matx)
+        private int[][] move_right(int[][] matz)
         {
-            int[] tempxx = get0Point(matrix);
+            int[][] po = new int[matz.Length][];
+
+            for (int iii = 0; iii < matz.Length; iii++)
+            {
+                po[iii] = new int[matz.Length];
+                for (int jjj = 0; jjj < matz.Length; jjj++)
+                {
+                    po[iii][jjj] = matz[iii][jjj];
+                }
+            }
+            int[] tempxx = get0Point(po);
             int i = tempxx[0];
             int j = tempxx[1];
 
-            if (j < matx[0].Length - 1)
+            if (j < po[0].Length - 1)
             {
-                int temp = matx[i][j];
-                matx[i][j] = matx[i][j + 1];
-                matx[i][j + 1] = temp;
+                int temp = po[i][j];
+                po[i][j] = po[i][j + 1];
+                po[i][j + 1] = temp;
 
             }
-            return matx;
+            return po;
         }
         private int[] get0Point(int[][] mat)
         {

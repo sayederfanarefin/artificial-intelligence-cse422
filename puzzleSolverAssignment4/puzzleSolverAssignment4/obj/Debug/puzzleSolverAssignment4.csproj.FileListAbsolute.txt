@@ -4,3 +4,9 @@ c:\users\erfan\documents\visual studio 2015\Projects\puzzleSolverAssignment4\puz
 c:\users\erfan\documents\visual studio 2015\Projects\puzzleSolverAssignment4\puzzleSolverAssignment4\bin\Debug\puzzleSolverAssignment4.pdb
 c:\users\erfan\documents\visual studio 2015\Projects\puzzleSolverAssignment4\puzzleSolverAssignment4\obj\Debug\puzzleSolverAssignment4.exe
 c:\users\erfan\documents\visual studio 2015\Projects\puzzleSolverAssignment4\puzzleSolverAssignment4\obj\Debug\puzzleSolverAssignment4.pdb
+C:\Users\erfan\Desktop\artificial-intelligence-cse422\puzzleSolverAssignment4\puzzleSolverAssignment4\bin\Debug\puzzleSolverAssignment4.exe.config
+C:\Users\erfan\Desktop\artificial-intelligence-cse422\puzzleSolverAssignment4\puzzleSolverAssignment4\obj\Debug\puzzleSolverAssignment4.exe
+C:\Users\erfan\Desktop\artificial-intelligence-cse422\puzzleSolverAssignment4\puzzleSolverAssignment4\obj\Debug\puzzleSolverAssignment4.pdb
+C:\Users\erfan\Desktop\artificial-intelligence-cse422\puzzleSolverAssignment4\puzzleSolverAssignment4\bin\Debug\puzzleSolverAssignment4.exe
+C:\Users\erfan\Desktop\artificial-intelligence-cse422\puzzleSolverAssignment4\puzzleSolverAssignment4\bin\Debug\puzzleSolverAssignment4.pdb
+C:\Users\erfan\Desktop\artificial-intelligence-cse422\puzzleSolverAssignment4\puzzleSolverAssignment4\obj\Debug\puzzleSolverAssignment4.csprojResolveAssemblyReference.cache
