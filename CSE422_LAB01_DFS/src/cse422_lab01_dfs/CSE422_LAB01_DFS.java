@@ -25,6 +25,7 @@ public class CSE422_LAB01_DFS {
     static String adj[][];
     static String start;
     static String end;
+    static boolean visited[];
     static int numberOfBrokenLines;
     static int numberOfNodes;
     public static void main(String[] args) {
@@ -36,6 +37,7 @@ public class CSE422_LAB01_DFS {
                 br = new BufferedReader(new FileReader("input.txt"));
                 String [] number_of_vr_edg= br.readLine().split(",");
                 numberOfNodes = Integer.valueOf(number_of_vr_edg[0]);
+                visited = new boolean[numberOfNodes+1];
                 adj = new String [numberOfNodes+1][numberOfNodes+1];
                 start = br.readLine();
                 end = br.readLine();
@@ -125,9 +127,24 @@ public class CSE422_LAB01_DFS {
     }
     public static ArrayList<String> traverser(String node){
         ArrayList<String> tobereturned = new ArrayList<String>();
-        findIndex(node);
-        
-        
+        if(node.equals(end)){
+            tobereturned.add(end);
+        }else{
+            
+            ArrayList<String> children = childFinder(node);
+            
+            for(int h =0; h <children.size();h++){
+                if(!visited[findIndex(children.get(h))]){
+                    visited[findIndex(children.get(h))] = true;
+                ArrayList<String> tempo = traverser(children.get(h));
+                if(tempo.size()>0){
+                    tempo.add(node);
+                    tobereturned = tempo;
+                    results.add(tempo);
+                }
+            }
+            }
+        }
         return tobereturned;
     }
     
