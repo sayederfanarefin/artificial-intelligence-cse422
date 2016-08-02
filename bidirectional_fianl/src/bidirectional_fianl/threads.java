@@ -1,11 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-
 package bidirectional_fianl;
 
 import static bidirectional_fianl.Bidirectional_fianl.graph_matrix;
@@ -18,7 +10,7 @@ import java.util.Queue;
 import static bidirectional_fianl.Bidirectional_fianl.city_name_list;
 /**
  *
- * @author Arshad
+ * @author Erfan
  */
 
 
@@ -87,15 +79,13 @@ public class threads implements Runnable{
                 break;
             }
         }
-        //System.out.println("Level"+level[end]);
-        //print();
     }
     public Object[]  print(int end){
        ArrayList as=new ArrayList();
         int i=end;
         while(true){
             as.add(city_name_list[i]);
-            //System.out.print(city_list[i]+"->");
+           
             if(i==start){
                 break;
             }
@@ -103,6 +93,6 @@ public class threads implements Runnable{
         }
         
         return as.toArray();
-    }// End of method print
+    }
     
 }
