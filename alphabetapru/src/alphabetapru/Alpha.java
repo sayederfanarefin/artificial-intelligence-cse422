@@ -18,7 +18,7 @@ public class Alpha {
         
         abp.pruning_counts=0;
         try{
-            BufferedReader br = new BufferedReader(new FileReader("sample.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("input.txt"));
             abp.turns_count=Integer.parseInt(br.readLine());
             abp.depth=2*abp.turns_count;
             abp.number_of_childs=Integer.parseInt(br.readLine()); 
