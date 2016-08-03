@@ -16,18 +16,18 @@ public class Alpha {
     public static void main(String[] args) {
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader("input.txt"));
-            int temp_turns_count = Integer.parseInt(br.readLine());
+            BufferedReader nemesis = new BufferedReader(new FileReader("input.txt"));
+            int temp_turns_count = Integer.parseInt(nemesis.readLine());
 
-            int temp_number_of_childs = Integer.parseInt(br.readLine());
+            int temp_number_of_childs = Integer.parseInt(nemesis.readLine());
 
-            String temp[] = br.readLine().split(" ");
+            String temp[] = nemesis.readLine().split(" ");
             int temp_min_value = Integer.parseInt(temp[0]);
             int temp_max_value = Integer.parseInt(temp[1]);
 
             Alphabetapruning abp = new Alphabetapruning(temp_turns_count, temp_number_of_childs, temp_min_value, temp_max_value);
 
-            abp.trees = new int[abp.total_nodes];
+            abp.tree = new int[abp.total_nodes];
 
             // Number of terminal states
             abp.terminal_States = (int) Math.pow(abp.number_of_childs, 2);

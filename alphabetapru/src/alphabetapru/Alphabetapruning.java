@@ -19,9 +19,8 @@ public class Alphabetapruning {
     public int min_value;
     public int max_value;
     public int terminal_States;
-
     public int inputvals[];
-    public int trees[];
+    public int[] tree;
     public int c;
 
     public Alphabetapruning(int turns_count, int number_of_childs ,int min, int max){
@@ -35,15 +34,15 @@ public class Alphabetapruning {
     }
     public void generateLeafNodes() {
         for (int i = total_nodes - 1; i >= (total_nodes - terminal_States); i--) {
-            trees[i] = min_value + (int) (Math.random() * ((max_value - min_value) + 1));
-            System.out.print(trees[i] + ",");
+            tree[i] = min_value + (int) (Math.random() * ((max_value - min_value) + 1));
+            System.out.print(tree[i] + ",");
         }
 
     }
 
     public int abc(int node, int depth, int aplha, int beta, boolean maxi) {
         if (depth == 0) {
-            return trees[node];
+            return tree[node];
         }
         if (maxi) {
             int v = Integer.MIN_VALUE;
