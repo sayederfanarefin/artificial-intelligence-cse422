@@ -31,8 +31,13 @@ public class Alphabetapruning {
         this.total_nodes = (int) (Math.pow(number_of_childs, (this.depth + 1)) - 1) / (number_of_childs - 1);
         min_value = min;
         max_value = max;
+        tree = new int[total_nodes];
+        terminal_States = (int) Math.pow(number_of_childs, 2);
+         // Number of terminal states is equals to number of child per node to the power number of depth
+        inputvals = new int[terminal_States];
+        
     }
-    public void generateLeafNodes() {
+    public void buildNodes() {
         for (int i = total_nodes - 1; i >= (total_nodes - terminal_States); i--) {
             tree[i] = min_value + (int) (Math.random() * ((max_value - min_value) + 1));
             System.out.print(tree[i] + ",");
@@ -40,39 +45,38 @@ public class Alphabetapruning {
 
     }
 
-    public int abc(int node, int depth, int aplha, int beta, boolean maxi) {
+    public int compare(int node, int depth, int alpa, int beta, boolean maxim) {
         if (depth == 0) {
             return tree[node];
         }
-        if (maxi) {
+        if (maxim) {
             int v = Integer.MIN_VALUE;
             int child = 3 * node + 1;
-            int i = 0;
-            while (i < number_of_childs) {
-                v = (int) Math.max(v, abc(child, depth - 1, aplha, beta, false));
-                aplha = (int) Math.max(aplha, v);
-                if (beta <= aplha) {
-                    pruning_counts++;
+            
+            for (int i = 0;i < number_of_childs;i++) {
+                v = (int) Math.max(v, compare(child, depth - 1, alpa, beta, false));
+                alpa = (int) Math.max(alpa, v);
+                if (beta <= alpa) {
+                    pruning_counts=pruning_counts + number_of_childs - (i+1);
                     break;
                 }
                 child++;
-                i++;
+                
             }
             return v;
         }
-        if (!maxi) {
+        if (!maxim) {
             int v = Integer.MAX_VALUE;
             int child = 3 * node + 1;
-            int i = 0;
-            while (i < number_of_childs) {
-                v = (int) Math.min(v, abc(child, depth - 1, aplha, beta, true));
+            for (int i = 0;i < number_of_childs;i++) {
+                v = (int) Math.min(v, compare(child, depth - 1, alpa, beta, true));
                 beta = (int) Math.min(beta, v);
-                if (beta <= aplha) {
-                    pruning_counts++;
+                if (beta <= alpa) {
+                    pruning_counts = pruning_counts + number_of_childs - (i+1);
                     break;
                 }
                 child++;
-                i++;
+                
             }
             return v;
         }
